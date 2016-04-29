@@ -3,6 +3,7 @@ package com.turqmelon.PopulaceScoreboards;
 
 import com.turqmelon.Populace.Events.Resident.ResidentJoinTownEvent;
 import com.turqmelon.Populace.Events.Resident.ResidentLeaveTownEvent;
+import com.turqmelon.Populace.Events.Resident.ResidentRankChangedEvent;
 import com.turqmelon.Populace.Events.Town.TownCreationEvent;
 import com.turqmelon.Populace.Resident.Resident;
 import com.turqmelon.Populace.Resident.ResidentManager;
@@ -40,7 +41,17 @@ public class PopulaceScores extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onJoin(ResidentJoinTownEvent event){
+    public void onEvent(ResidentRankChangedEvent event) {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Bukkit.getOnlinePlayers().forEach(PopulaceScores::updateScoreboard);
+            }
+        }.runTaskLater(this, 10L);
+    }
+
+    @EventHandler
+    public void onEvent(ResidentJoinTownEvent event) {
         new BukkitRunnable(){
             @Override
             public void run() {
@@ -50,7 +61,7 @@ public class PopulaceScores extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onJoin(ResidentLeaveTownEvent event){
+    public void onEvent(ResidentLeaveTownEvent event) {
         new BukkitRunnable(){
             @Override
             public void run() {
