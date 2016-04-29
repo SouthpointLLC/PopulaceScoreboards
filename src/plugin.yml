@@ -1,0 +1,6 @@
+name: PopulaceScoreboards
+description: Shows scoreboards for the sidebar and above player heads for towns
+author: Turqmelon
+version: 1.0
+main: com.turqmelon.PopulaceScoreboards.PopulaceScores
+depend: [Populace]
