@@ -126,12 +126,12 @@ public class PopulaceScores extends JavaPlugin implements Listener {
                 team.setAllowFriendlyFire(true);
                 team.setCanSeeFriendlyInvisibles(false);
                 team.setDisplayName("updated" + id);
-                team.setPrefix(rank.getPrefix());
+                team.setPrefix(rank.getPrefix() + "§f");
                 String townName = town.getName();
-                if (townName.length() > 13){
-                    townName = townName.substring(0, 12);
+                if (townName.length() > 11) {
+                    townName = townName.substring(0, 10);
                 }
-                townName = " [" + townName + "]";
+                townName = "§7 [" + townName + "]";
                 team.setSuffix(townName);
             }
 
