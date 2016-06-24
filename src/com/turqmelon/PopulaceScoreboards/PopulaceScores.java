@@ -87,7 +87,7 @@ public class PopulaceScores extends JavaPlugin implements Listener {
                         startID++;
                     }
                     int index = prefixIndex.get(resident.getPrefix());
-                    possibilities.put(index + "", "§6" + resident.getPrefix());
+                    possibilities.put(index + "", "§6" + resident.getPrefix() + " ");
                 }
             }
 
