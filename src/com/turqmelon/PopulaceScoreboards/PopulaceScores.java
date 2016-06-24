@@ -114,14 +114,36 @@ public class PopulaceScores extends JavaPlugin implements Listener {
             }
 
         }
+
+        {
+            String townlessName = "-1-1";
+            Team team;
+            if (sb.getTeam(townlessName) == null) {
+                team = sb.registerNewTeam(townlessName);
+            } else {
+                team = sb.getTeam(townlessName);
+            }
+            if (team.getDisplayName() != null && team.getDisplayName().startsWith("updated")) {
+
+            } else {
+                team.setAllowFriendlyFire(true);
+                team.setCanSeeFriendlyInvisibles(false);
+                team.setDisplayName("updated-1-1");
+                team.setPrefix("§8[Townless] ");
+            }
+
+        }
+
         for (Player p : Bukkit.getOnlinePlayers()) {
             Resident resident = ResidentManager.getResident(p);
             if (resident == null) continue;
             String memberOf = null;
-            if (resident.getTown() != null) {
-                long id = assignID(resident.getTown());
-                Team team = null;
-                if (resident.getPrefix() != null && prefixIndex.containsKey(resident.getPrefix())) {
+            {
+                long id = resident.getTown() != null ? assignID(resident.getTown()) : -1;
+                Team team;
+                if (id == -1) {
+                    team = sb.getTeam("-1-1");
+                } else if (resident.getPrefix() != null && prefixIndex.containsKey(resident.getPrefix())) {
                     int index = prefixIndex.get(resident.getPrefix());
                     String teamName = id + ":" + index;
                     team = sb.getTeam(teamName);
